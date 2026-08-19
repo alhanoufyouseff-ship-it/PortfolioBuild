@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="modern" data-color="blue-purple">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PortfolioBuild | باني البورتفوليو التفاعلي للمطورين والطلاب</title>
+  <meta name="description" content="تطبيق ويب تفاعلي وباني بورتفوليو احترافي لطلاب الجامعات ومهندسي البرمجيات والمطورين.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 Free Vector Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Design System & Theme Styles -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="min-h-screen text-slate-100 selection:bg-indigo-500 selection:text-white">
+
+  <!-- Interactive AI Neural Network Canvas Background -->
+  <canvas id="neural-canvas"></canvas>
+
+  <div class="main-content flex flex-col min-h-screen">
+    
+    <!-- Global Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/10 px-4 lg:px-8 py-3.5 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        
+        <!-- Brand Logo & Title -->
+        <button type="button" id="btn-nav-home" class="flex items-center gap-3 text-start group transition">
+          <div class="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition">
+            <i class="fa-solid fa-code text-lg"></i>
+          </div>
+          <div>
+            <div class="font-black text-lg tracking-tight text-white flex items-center gap-1.5">
+              <span>PortfolioBuild</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 uppercase font-mono">PRO</span>
+            </div>
+            <div class="text-[11px] text-slate-400 font-medium hidden sm:block" data-i18n="appTagline">باني البورتفوليو التفاعلي للمطورين والمبتكرين</div>
+          </div>
+        </button>
+
+        <!-- Quick Header Controls -->
+        <div class="flex items-center gap-3">
+          
+          <!-- View Example Button in Navbar -->
+          <button type="button" id="btn-nav-example" class="hidden md:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200 transition">
+            <i class="fa-solid fa-eye text-indigo-400"></i>
+            <span data-i18n="btnViewExample">معاينة نموذج جاهز</span>
+          </button>
+
+          <!-- Language Switcher -->
+          <div class="flex items-center bg-slate-900/80 p-1 rounded-xl border border-white/10 text-xs">
+            <button type="button" data-set-lang="ar" class="px-2.5 py-1 rounded-lg font-semibold transition bg-white/20 text-white">العربية</button>
+            <button type="button" data-set-lang="en" class="px-2.5 py-1 rounded-lg font-semibold transition opacity-60 text-slate-300 hover:text-white">EN</button>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- ----------------- VIEW 1: WELCOME SCREEN ----------------- -->
+    <main id="view-welcome" class="flex-1 max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-20 flex flex-col justify-center space-y-16">
+      
+      <!-- Hero Centerpiece -->
+      <section class="text-center max-w-3xl mx-auto space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-tag text-xs font-semibold shadow-inner">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>جيل جديد من باني السير الذاتية البرمجية التفاعلية</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight" data-i18n="welcomeTitle">
+          اصنع بورتفوليو شخصي استثنائي يبهر أصحاب العمل وشركاء المشاريع
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed" data-i18n="welcomeSubtitle">
+          منصة مخصصة لطلاب الجامعات والمطورين لبناء سيرة ذاتية تفاعلية حديثة، تدعم التخصيص اللحظي، وشبكة ذكاء اصطناعي تفاعلية في ثوانٍ معدودة.
+        </p>
+
+        <!-- Main Welcome Actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <button type="button" id="btn-welcome-create" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-primary text-white font-bold text-base shadow-xl glow-btn flex items-center justify-center gap-3">
+            <i class="fa-solid fa-bolt text-lg"></i>
+            <span data-i18n="btnCreateProfile">ابدأ بناء ملفك الشخصي</span>
+            <i class="fa-solid fa-arrow-left rtl:inline ltr:hidden"></i>
+            <i class="fa-solid fa-arrow-right ltr:inline rtl:hidden"></i>
+          </button>
+
+          <button type="button" id="btn-welcome-example" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-white/15 text-white font-bold text-base transition flex items-center justify-center gap-3">
+            <i class="fa-solid fa-circle-play text-indigo-400 text-lg"></i>
+            <span data-i18n="btnViewExample">معاينة نموذج جاهز</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Key Features Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
+        
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-3 glow-card">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl border border-indigo-500/30">
+            <i class="fa-solid fa-circle-nodes"></i>
+          </div>
+          <h3 class="font-bold text-lg text-white">خلفية ذكاء اصطناعي تفاعلية</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            شبكة عصبية مبنية بالـ Canvas تتفاعل فيزيائياً مع حركة مؤشر الماوس وتحسب المسافات بمرونة تامة.
+          </p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-3 glow-card">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl border border-purple-500/30">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <h3 class="font-bold text-lg text-white">تخصيص مباشر بـ 5 أنماط</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            تحكم فوري بالسمات (Modern Glass, Minimal, Creative Glow, Professional, Dark Cyber) و 6 لوحات ألوان.
+          </p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-3 glow-card">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-xl border border-sky-500/30">
+            <i class="fa-solid fa-share-nodes"></i>
+          </div>
+          <h3 class="font-bold text-lg text-white">نشر فوري وتخزين محلي</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            حفظ مباشر في قاعدة بيانات SQLite محلية، ورفع الملفات بأمان، وتوليد رابط مشاركة فريد مع احتفال Confetti.
+          </p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ----------------- VIEW 2: PROFILE BUILDER & LIVE PREVIEW ----------------- -->
+    <main id="view-builder" class="hidden flex-1 max-w-[1600px] w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+      
+      <!-- Top Real-Time Customizer & Action Bar -->
+      <section class="glass-panel p-4 rounded-2xl border border-white/10 flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Left / Themes & Colors Controls -->
+        <div class="flex flex-wrap items-center gap-4 lg:gap-6">
+          
+          <!-- Themes Pill Selector -->
+          <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-white/10">
+            <span class="text-xs text-slate-400 font-semibold px-2 hidden sm:inline" data-i18n="themeLabel">النمط:</span>
+            <button type="button" data-set-theme="modern" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition opacity-100 ring-2 ring-indigo-400 bg-white/10 text-white" title="Modern Glass">Modern</button>
+            <button type="button" data-set-theme="minimal" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition opacity-60 hover:opacity-100 text-slate-300" title="Minimal Clean">Minimal</button>
+            <button type="button" data-set-theme="creative" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition opacity-60 hover:opacity-100 text-slate-300" title="Creative Glow">Creative</button>
+            <button type="button" data-set-theme="professional" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition opacity-60 hover:opacity-100 text-slate-300" title="Professional">Pro</button>
+            <button type="button" data-set-theme="cyber" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition opacity-60 hover:opacity-100 text-slate-300" title="Dark Cyber">Cyber</button>
+          </div>
+
+          <!-- Color Scheme Selector Dots -->
+          <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-2 rounded-xl border border-white/10">
+            <span class="text-xs text-slate-400 font-semibold hidden sm:inline" data-i18n="colorLabel">اللون:</span>
+            <button type="button" data-set-color="blue" class="w-5 h-5 rounded-full bg-blue-500 hover:scale-110 transition" title="Blue"></button>
+            <button type="button" data-set-color="purple" class="w-5 h-5 rounded-full bg-purple-500 hover:scale-110 transition" title="Purple"></button>
+            <button type="button" data-set-color="blue-purple" class="w-5 h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 ring-2 ring-white scale-110 hover:scale-110 transition" title="Blue + Purple"></button>
+            <button type="button" data-set-color="green" class="w-5 h-5 rounded-full bg-emerald-500 hover:scale-110 transition" title="Green"></button>
+            <button type="button" data-set-color="pink" class="w-5 h-5 rounded-full bg-pink-500 hover:scale-110 transition" title="Pink"></button>
+            <button type="button" data-set-color="black-white" class="w-5 h-5 rounded-full bg-slate-200 hover:scale-110 transition" title="Monochrome"></button>
+          </div>
+
+        </div>
+
+        <!-- Right / LinkedIn Sync & Publish Actions -->
+        <div class="flex items-center gap-3">
+          
+          <!-- LinkedIn Quick Sync Button -->
+          <button type="button" id="btn-sync-linkedin" class="px-4 py-2.5 rounded-xl bg-sky-600/20 hover:bg-sky-600/30 text-sky-300 border border-sky-500/40 text-xs font-bold transition flex items-center gap-2 glow-btn">
+            <i class="fa-brands fa-linkedin text-sm"></i>
+            <span data-i18n="btnConnectLinkedIn">ربط حساب LinkedIn</span>
+          </button>
+
+          <!-- Publish Portfolio Button -->
+          <button type="button" id="btn-publish-main" class="px-6 py-2.5 rounded-xl bg-gradient-primary text-white text-xs sm:text-sm font-black shadow-lg glow-btn flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+            <span data-i18n="btnPublish">نشر البورتفوليو</span>
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- Responsive Mobile/Tablet Tabs -->
+      <div class="lg:hidden flex rounded-xl bg-slate-900/90 p-1 border border-white/10 text-xs font-bold">
+        <button type="button" id="tab-btn-builder" class="flex-1 py-2 rounded-lg bg-indigo-600 text-white transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span data-i18n="btnEditForm">تعديل البيانات</span>
+        </button>
+        <button type="button" id="tab-btn-preview" class="flex-1 py-2 rounded-lg bg-white/5 text-slate-400 transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-eye"></i>
+          <span data-i18n="btnLivePreview">المعاينة المباشرة</span>
+        </button>
+      </div>
+
+      <!-- Main Dual Column Workspace (Builder Form + Live Preview) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT COLUMN: Profile Builder Form -->
+        <div id="col-builder-form" class="lg:col-span-5 space-y-6">
+          
+          <!-- 1. Personal Info & Education -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center gap-2 text-indigo-400 font-bold text-base border-b border-white/10 pb-3">
+              <i class="fa-solid fa-user-gear"></i>
+              <span data-i18n="sectionPersonalInfo">البيانات الشخصية والتعليم</span>
+            </div>
+
+            <div class="flex items-center gap-4 pt-1">
+              <div class="w-16 h-16 rounded-full bg-slate-900 border border-white/20 overflow-hidden shrink-0 flex items-center justify-center relative">
+                <img id="avatar-preview-img" src="/static/assets/sample/avatar.svg" class="w-full h-full object-cover opacity-40">
+              </div>
+              <div class="flex-1">
+                <label class="block text-xs text-slate-400 mb-1" data-i18n="labelPhoto">الصورة الشخصية (رفع مباشر)</label>
+                <input type="file" id="avatar-file-input" accept="image/*" class="text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 cursor-pointer">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-400 mb-1" data-i18n="labelFullName">الاسم الكامل</label>
+              <input type="text" id="input-name" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="مثال: سعود العتيبي">
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-400 mb-1" data-i18n="labelEducation">الجامعة / التخصص الدراسي</label>
+              <input type="text" id="input-education" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="مثال: بكالوريوس هندسة برمجيات - جامعة الملك فهد (KFUPM)">
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-400 mb-1" data-i18n="labelBio">النبذة التعريفية (Bio)</label>
+              <textarea id="input-bio" rows="3" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="اكتب نبذة تعريفية تعبر عن اهتماماتك وشغفك التقني..."></textarea>
+            </div>
+          </div>
+
+          <!-- 2. Technical Skills -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center gap-2 text-indigo-400 font-bold text-base border-b border-white/10 pb-3">
+              <i class="fa-solid fa-layer-group"></i>
+              <span data-i18n="sectionSkills">المهارات التقنية</span>
+            </div>
+            <div>
+              <label class="block text-xs text-slate-400 mb-1" data-i18n="labelSkillsInput">أدخل المهارات (افصل بينها بفاصلة)</label>
+              <input type="text" id="input-skills" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Python, React, TypeScript, Docker, SQLite, Next.js">
+            </div>
+          </div>
+
+          <!-- 3. Projects -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold text-base">
+                <i class="fa-solid fa-cubes"></i>
+                <span data-i18n="sectionProjects">المشاريع والأعمال</span>
+              </div>
+              <button type="button" id="btn-add-project" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span data-i18n="btnAddProject">إضافة مشروع</span>
+              </button>
+            </div>
+            <div id="projects-form-list" class="space-y-4"></div>
+          </div>
+
+          <!-- 4. Work Experience & Internships -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold text-base">
+                <i class="fa-solid fa-briefcase"></i>
+                <span data-i18n="sectionExperience">الخبرات العملية والتدريب</span>
+              </div>
+              <button type="button" id="btn-add-exp" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span data-i18n="btnAddExp">إضافة خبرة</span>
+              </button>
+            </div>
+            <div id="experiences-form-list" class="space-y-4"></div>
+          </div>
+
+          <!-- 5. Certificates & Accreditations -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold text-base">
+                <i class="fa-solid fa-award"></i>
+                <span data-i18n="sectionCertificates">الشهادات والاعتمادات</span>
+              </div>
+              <button type="button" id="btn-add-cert" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span data-i18n="btnAddCert">إضافة شهادة</span>
+              </button>
+            </div>
+            <div id="certificates-form-list" class="space-y-4"></div>
+          </div>
+
+          <!-- 6. Volunteering & Student Clubs (Placed at the end of profile before Contact) -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2 text-indigo-400 font-bold text-base">
+                <i class="fa-solid fa-users"></i>
+                <span data-i18n="sectionVolunteering">التطوع والنوادي الطلابية</span>
+              </div>
+              <button type="button" id="btn-add-vol" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span data-i18n="btnAddVol">إضافة نشاط</span>
+              </button>
+            </div>
+            <div id="volunteering-form-list" class="space-y-4"></div>
+          </div>
+
+          <!-- 7. Contact Information -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center gap-2 text-indigo-400 font-bold text-base border-b border-white/10 pb-3">
+              <i class="fa-solid fa-address-book"></i>
+              <span data-i18n="sectionContact">معلومات التواصل والروابط</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs text-slate-400 mb-1" data-i18n="labelEmail">البريد الإلكتروني</label>
+                <input type="email" id="input-email" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="dev@example.com">
+              </div>
+              <div>
+                <label class="block text-xs text-slate-400 mb-1" data-i18n="labelPhone">رقم الجوال</label>
+                <input type="tel" id="input-phone" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="+966500000000">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs text-slate-400 mb-1" data-i18n="labelLinkedIn">رابط LinkedIn</label>
+                <input type="url" id="input-linkedin" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="https://linkedin.com/in/username">
+              </div>
+              <div>
+                <label class="block text-xs text-slate-400 mb-1" data-i18n="labelGitHub">رابط GitHub</label>
+                <input type="url" id="input-github" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="https://github.com/username">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Real-Time Live Interactive Portfolio Preview -->
+        <div id="col-builder-preview" class="hidden lg:block lg:col-span-7 sticky top-24">
+          <div class="flex items-center justify-between pb-3 px-1 text-xs text-slate-400 font-semibold">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span data-i18n="btnLivePreview">معاينة تفاعلية لحظية (Live Preview)</span>
+            </span>
+          </div>
+          <div id="live-portfolio-preview" class="overflow-y-auto max-h-[calc(100vh-140px)] pr-2 pl-2"></div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- ----------------- VIEW 3: READ-ONLY EXAMPLE PORTFOLIO VIEW ----------------- -->
+    <main id="view-example" class="hidden flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-6 space-y-8">
+      
+      <!-- Top Read-Only Bar -->
+      <section class="glass-panel p-4 rounded-2xl border border-indigo-500/30 flex flex-wrap items-center justify-between gap-4">
+        
+        <div class="flex items-center gap-3">
+          <button type="button" id="btn-example-back" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-right rtl:inline ltr:hidden"></i>
+            <i class="fa-solid fa-arrow-left ltr:inline rtl:hidden"></i>
+            <span data-i18n="btnBackToWelcome">العودة للرئيسية</span>
+          </button>
+
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold">
+            <i class="fa-solid fa-lock text-xs"></i>
+            <span>نموذج تجريبي (للعرض فقط - غير قابل للتعديل)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button type="button" id="btn-example-create" class="px-5 py-2.5 rounded-xl bg-gradient-primary text-white text-xs font-bold glow-btn flex items-center gap-2">
+            <i class="fa-solid fa-bolt"></i>
+            <span data-i18n="btnCreateProfile">ابدأ بناء ملفك الشخصي الآن</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- Dedicated Read-Only Render Container -->
+      <div id="example-portfolio-render"></div>
+
+    </main>
+
+  </div>
+
+  <!-- ----------------- MODAL: LINKEDIN QUICK SYNC ----------------- -->
+  <div id="linkedin-modal" class="fixed inset-0 z-50 modal-overlay hidden items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-md p-6 rounded-2xl border border-white/20 shadow-2xl space-y-5 text-center">
+      <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 mx-auto flex items-center justify-center text-2xl border border-sky-500/30">
+        <i class="fa-brands fa-linkedin"></i>
+      </div>
+      <div class="space-y-1">
+        <h3 class="text-lg font-bold text-white" data-i18n="linkedInSyncTitle">محاكاة استيراد الملف من LinkedIn</h3>
+        <p class="text-xs text-slate-300" data-i18n="linkedInSyncDesc">سيتم استيراد الملف المهني وتعبئة الحقول تلقائياً لتسهيل البناء السريع.</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-white/10">
+        <div id="linkedin-progress" class="bg-gradient-primary h-2.5 rounded-full transition-all duration-300 w-[10%]"></div>
+      </div>
+
+      <div id="linkedin-status" class="text-xs text-indigo-300 font-medium animate-pulse">
+        جاري الاتصال بخوادم LinkedIn...
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------- MODAL: PUBLISH SUCCESS & SHARING ----------------- -->
+  <div id="publish-modal" class="fixed inset-0 z-50 modal-overlay hidden items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-lg p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl space-y-6 text-center">
+      <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-3xl border border-emerald-500/30 shadow-lg">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-xl sm:text-2xl font-black text-white" data-i18n="publishModalTitle">تهانينا! تم نشر البورتفوليو بنجاح</h3>
+        <p class="text-xs sm:text-sm text-slate-300" data-i18n="publishModalDesc">أصبح موقعك الشخصي متاحاً وجاهزاً للمشاركة مع الجميع عبر الرابط التالي:</p>
+      </div>
+
+      <!-- Share URL Input & Copy Button -->
+      <div class="flex items-center gap-2 bg-slate-900/90 p-1.5 rounded-xl border border-slate-700">
+        <input type="text" id="publish-share-url" readonly class="flex-1 bg-transparent px-3 py-2 text-xs font-mono text-indigo-300 focus:outline-none">
+        <button type="button" id="btn-copy-share-url" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1.5 shrink-0">
+          <i class="fa-solid fa-copy"></i>
+          <span data-i18n="copyLinkBtn">نسخ</span>
+        </button>
+      </div>
+
+      <!-- QR Code Preview -->
+      <div class="flex flex-col items-center justify-center gap-2 pt-2">
+        <div id="publish-qr-code"></div>
+        <span class="text-[11px] text-slate-400">امسح الرمز للمعاينة الفورية على الهاتف</span>
+      </div>
+
+      <!-- Bottom Actions -->
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <a id="btn-open-live-portfolio" href="#" target="_blank" class="flex-1 py-3 px-4 rounded-xl bg-gradient-primary text-white text-xs font-bold glow-btn flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span data-i18n="openLiveBtn">فتح في صفحة مستقلة</span>
+        </a>
+        <button type="button" id="btn-close-publish-modal" class="py-3 px-6 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 hover:text-white text-xs font-bold transition" data-i18n="closeModalBtn">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Application JavaScript Modules -->
+  <script src="/static/js/neural-canvas.js"></script>
+  <script src="/static/js/customizer.js"></script>
+  <script src="/static/js/linkedin-sync.js"></script>
+  <script src="/static/js/builder.js"></script>
+  <script src="/static/js/app.js"></script>
+
+</body>
+</html>
