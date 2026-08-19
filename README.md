@@ -1,102 +1,77 @@
- 🚀 PortfolioBuild - Interactive Portfolio Builder
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.1.3-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![FontAwesome](https://img.shields.io/badge/Font_Awesome-6-528DD7?style=for-the-badge&logo=font-awesome&logoColor=white)](https://fontawesome.com/)
-An interactive, high-performance web application designed for university students, software engineers, and tech innovators to craft and publish personal developer portfolios in minutes.
----
-## ✨ Key Features
-### 1. 🛠️ Dynamic Profile Builder
-- **Personal Information:** Full Name, Bio, Education/University, and direct profile picture upload with instant preview.
-- **Technical Skills:** Interactive tag-based technical skill badges.
-- **Featured Projects:** Showcase projects with titles, descriptions, tech stack tags, local image uploads, and external live demo links.
-- **Work Experience & Internships:** Chronological career timeline with role descriptions.
-- **Certificates & Accreditations:** Display verified certificates, issuers, completion years, and badge visuals.
-- **Volunteering & Student Clubs:** Dedicated section highlighting leadership, student club affiliations, and organization logos.
-- **Contact Channels:** Direct interactive buttons for Email, Phone, LinkedIn, and GitHub.
-### 2. 🔗 LinkedIn Quick Sync Simulation
-- Optional one-click **LinkedIn Sync** assistant with a realistic multi-step progress animation.
-- Automatically populates rich developer profile data while keeping all fields 100% editable.
-### 3. 🎨 Real-Time Live Customizer
-- **5 Visual Themes:**
-  - `Modern Glass`: Sleek glassmorphism with subtle backdrop blur.
-  - `Minimal Clean`: Crisp borders with high contrast.
-  - `Creative Glow`: Developer neon glow with dynamic drop shadows.
-  - `Professional`: Corporate classic elegance.
-  - `Dark Cyber`: Futuristic cyberpunk dark mode with accented geometry.
-- **6 Color Palettes:** Ocean Blue, Deep Purple, Blue + Purple, Emerald Green, Neon Pink, and Monochrome.
-- **Bilingual & Bi-directional:** Seamless real-time switching between **Arabic (RTL)** and **English (LTR)** typography and layouts.
-### 4. 🧠 Interactive AI Neural Network Canvas
-- Physics-based **HTML5 Canvas** particle engine reacting dynamically to mouse cursor motion.
-- Euclidean distance calculation with dynamic connecting rays and live synchronization with the active theme color palette.
-### 5. 🚀 Publishing & Sharing Ecosystem
-- **Local SQLite Database:** Fully persistent relational database (`database.db`) for high performance and privacy.
-- **Confetti Celebration:** Canvas Confetti explosion effect upon successful publishing.
-- **Unique Shareable URLs:** Generates clean permalinks (e.g., `/p/your-name`).
-- **QR Code Sharing:** Auto-generated QR code for instant mobile viewing.
-- **Zero-Emoji Professional UI:** Pure vector icon system using **FontAwesome 6**.
----
-## 🛠️ Tech Stack
-| Layer | Technologies Used |
-| :--- | :--- |
-| **Backend** | Python 3.12, Flask 3.1.3, Werkzeug |
-| **Database** | SQLite3 (Built-in Relational Storage) |
-| **Media Storage** | Local File System (`/uploads`) |
-| **Frontend Framework** | Vanilla ES6+ JavaScript, Modular State Architecture |
-| **Styling & UI** | Tailwind CSS, Glassmorphism, CSS Variables |
-| **Interactive Canvas** | HTML5 Canvas API (Particle Physics Engine) |
-| **Icons & Visuals** | FontAwesome 6 Vector Icons |
-| **Animations** | Canvas Confetti Library |
----
-## 📁 Project Structure
+# 🚀 PortfolioBuild
+
+باني بورتفوليو تفاعلي للمطورين وطلاب الجامعات — مبني بـ **Next.js 14 (App Router)**، **TypeScript**، و**Tailwind CSS**، ومتوافق بالكامل مع معمارية **Vercel**.
+
+## المزايا
+
+- **بناء وتخصيص كامل** بدون قيود على الصفحة الرئيسية: بيانات شخصية، مشاريع، خبرات، شهادات، تطوع، نمط بصري، لوحة ألوان، ولغة (عربي/إنجليزي).
+- **صفحات بورتفوليو عامة** على `/p/[username]` — متاحة للجميع، متجاوبة، وتدعم الثيم وشبكة الخلفية التفاعلية (Neural Canvas).
+- **استيراد من LinkedIn** عبر Apify + هيكلة تلقائية بالذكاء الاصطناعي عبر OpenRouter.
+- **تحسين الصياغة بالذكاء الاصطناعي** لكل نص (نبذة، مشاريع، خبرات، تطوع).
+- **مطابقة الفرص الوظيفية**: يقارن مهاراتك وشهاداتك مع وظائف حقيقية ويعرض نسبة التطابق والمهارات الناقصة.
+- **مؤشر اكتمال الملف الشخصي** مع نصائح ديناميكية.
+- **تسجيل الدخول والتخزين عبر Firebase** (Authentication + Firestore).
+
+## البنية التقنية
+
+| الطبقة | التقنية |
+| --- | --- |
+| Framework | Next.js 14 (App Router) + TypeScript |
+| Styling | Tailwind CSS |
+| Auth | Firebase Authentication (Email/Password + Google) |
+| Database | Firestore (عبر Firebase Admin SDK — لا يتم الوصول له مباشرة من المتصفح) |
+| LinkedIn Import | Apify API |
+| AI (هيكلة + تحسين الصياغة + مطابقة الوظائف) | OpenRouter API |
+| Hosting | Vercel |
+
+## البدء السريع (تطوير محلي)
+
 ```bash
-PortfolioBuild/
-├── app.py                     # Flask REST API, SQLite ORM & Routes
-├── database.db                # SQLite database storing published portfolios
-├── uploads/                   # Local storage for uploaded images & media
-├── static/
-│   ├── css/
-│   │   └── style.css          # Design system, themes, and RTL/LTR styles
-│   ├── js/
-│   │   ├── neural-canvas.js   # Interactive AI neural particle engine
-│   │   ├── customizer.js      # Real-time theme, color, and language state
-│   │   ├── builder.js         # Form collections & live preview sync
-│   │   ├── linkedin-sync.js   # LinkedIn sync simulation module
-│   │   └── app.js             # Main application orchestrator & publish flow
-│   └── assets/
-│       └── sample/            # Default vector assets & badges
-└── templates/
-    ├── index.html             # Main SPA (Welcome, Builder & Preview)
-    └── portfolio.html         # Standalone published portfolio viewer (/p/:slug)
-🚀 Quick Start Guide
-Prerequisites
-Python 3.10+
-pip package manager
-1. Clone the Repository
-bash
+npm install
+cp .env.example .env.local   # ثم عبّئ القيم الحقيقية
+npm run dev
+```
 
+افتح http://localhost:3000
 
-git clone https://github.com/your-username/PortfolioBuild.git
-cd PortfolioBuild
-2. Install Dependencies
-bash
+## متغيرات البيئة
 
+راجع `.env.example` للحصول على القائمة الكاملة. **لا يتم قراءة أي مفتاح سري إلا من كود السيرفر (`process.env`)** — لا شيء يُسرّب للمتصفح باستثناء مفاتيح Firebase العامة (`NEXT_PUBLIC_FIREBASE_*`) وهي آمنة للعرض حسب تصميم Firebase.
 
-pip install flask
-3. Run the Application
-bash
+- `NEXT_PUBLIC_FIREBASE_*` — إعداد Firebase من جهة العميل (للمصادقة فقط).
+- `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` — Firebase Admin SDK (سري، من Service Account).
+- `APIFY_API_KEY` — لاستيراد بيانات LinkedIn العامة.
+- `OPENROUTER_API_KEY` — لتشغيل ميزات الذكاء الاصطناعي.
+- `JOB_SEARCH_API_KEY` — لجلب الفرص الوظيفية (اختياري؛ بدونه يعمل النظام ببيانات تجريبية عبر Remotive).
 
+`.env.local` مضاف إلى `.gitignore` ولن يُرفع أبداً لضبط النسخة الفعلية على Vercel، استخدم **Project → Settings → Environment Variables**.
 
-python app.py
-4. Open in Browser
-Visit http://127.0.0.1:5000 (or access from your mobile device via your local network IP).
+## النشر على Vercel
 
-🗄️ Database Schema
-The local SQLite database schema includes:
+المشروع Next.js قياسي — يكفي ربط المستودع بـ Vercel وضبط متغيرات البيئة أعلاه؛ لا حاجة لأي `vercel.json` مخصص.
 
-Users: Profile credentials, bio, education, skills, social links, active theme, and language.
-Projects: Project details, tech stack, image paths, and demo URLs.
-Experiences: Career timeline, job titles, companies, and roles.
-Certificates: Certifications, issuing bodies, years, and badge assets.
-Volunteering: Student clubs, leadership roles, durations, and club logos.
+## هيكل المجلدات
+
+```
+app/
+  page.tsx                    # الصفحة الرئيسية / الباني (عامة بالكامل)
+  p/[username]/page.tsx       # صفحة البورتفوليو العامة
+  api/
+    publish/route.ts          # حفظ البورتفوليو في Firestore (يتطلب تسجيل دخول)
+    portfolio/[username]/     # جلب بيانات بورتفوليو عام
+    me/route.ts                # جلب بورتفوليو المستخدم الحالي
+    import-linkedin/route.ts  # Apify + OpenRouter
+    enhance-text/route.ts     # تحسين الصياغة عبر OpenRouter
+    jobs-match/route.ts       # مطابقة الوظائف
+components/
+  BuilderApp.tsx               # المنسّق الرئيسي لصفحة الباني
+  PortfolioView.tsx            # عرض البورتفوليو (يُستخدم للمعاينة والصفحة العامة)
+  NeuralCanvas.tsx             # خلفية الجسيمات التفاعلية
+  ProfileCompletionMeter.tsx
+  builder/                     # مكونات نموذج الباني (أقسام، أزرار، لوحة التخصيص)
+lib/
+  firebase/client.ts           # Firebase Auth (عميل)
+  firebase/admin.ts            # Firebase Admin (سيرفر فقط)
+  openrouter.ts / apify.ts / jobs.ts
+  theme.ts / types.ts / slug.ts
+```
